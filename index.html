@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAISE 2025 - Robotics and AI in Systems Engineering | Prof. Anis Koubaa</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a2540;
+            --secondary-color: #635bff;
+            --accent-color: #00d4ff;
+            --text-color: #424770;
+            --light-bg: #f6f9fc;
+            --light-accent: #e3e8ee;
+            --success-color: #32D583;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 0 rgba(0, 0, 0, .05);
+        }
+
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-color) !important;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.2rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        footer {
+            background: var(--primary-color);
+            padding: 3rem 0;
+        }
+
+        .text-purple {
+            color: #635bff;
+        }
+
+        .badge-custom {
+            background: var(--light-bg);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .price-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-header {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .price-body {
+            padding: 1.5rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .track-card {
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .track-card:hover {
+            transform: translateX(5px);
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .day-schedule {
+            margin-bottom: 3rem;
+        }
+
+        .schedule-item {
+            padding: 1rem;
+            border-left: 3px solid var(--secondary-color);
+            margin-bottom: 1rem;
+            background: var(--light-bg);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .schedule-time {
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .stats-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+
+        .icon-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-circle i {
+            font-size: 1.5rem;
+        }
+
+        .bg-purple {
+            background-color: rgba(99, 91, 255, 0.1);
+        }
+
+        .partner-logo {
+            padding: 1.5rem 1rem;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .avatar-placeholder {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .committee-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .sponsor-logo {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sponsor-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Chatbot Button Styles */
+        .chatbot-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .chatbot-icon {
+            background-color: white;
+            color: var(--secondary-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .chatbot-text {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        /* Tooltip Styles */
+        .chatbot-tooltip {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            width: 250px;
+            padding: 15px;
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .tooltip-inner {
+            color: var(--text-color);
+        }
+
+        .tooltip-inner strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .tooltip-inner p {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+        .tooltip-arrow {
+            position: absolute;
+            bottom: -10px;
+            right: 30px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 576px) {
+            .chatbot-text {
+                display: none;
+            }
+
+            .chatbot-button {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                justify-content: center;
+                padding: 0;
+            }
+
+            .chatbot-icon {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <?php
+    // Define the root path for proper navbar links
+    $root_path = "../../";
+    include('../../navbar.php');
+    ?>
+
+    <!-- Event Navigation -->
+    <div class="bg-light py-2 mb-0 border-bottom">
+        <div class="container">
+            <div class="d-flex justify-content-center justify-content-md-center">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#audience">Audience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#program">Program</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#competition">Competition</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sponsors">Sponsors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 text-white hero-content mx-auto text-center">
+                    <h1 class="mb-3">RAISE 2025</h1>
+                    <p class="lead mb-4">Robotics and Artificial Intelligence in Systems Engineering</p>
+                    <div class="d-flex justify-content-center flex-wrap gap-4 mb-4">
+                        <div class="stats-item text-white bg-opacity-10">
+                            <div><i class="fas fa-calendar-alt me-2"></i> 14-16 July 2025</div>
+                        </div>
+                        <div class="stats-item text-white bg-opacity-10">
+                            <div><i class="fas fa-map-marker-alt me-2"></i> Centre de recherche Sfax, Tunisia</div>
+                        </div>
+                    </div>
+                    <a href="#register" class="btn btn-lg px-4 py-2 mt-3" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; border: none;">
+                        <i class="fas fa-ticket me-2"></i> Register Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="py-5" id="overview">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4">Summer School Overview</h2>
+                    <p class="lead mb-4">RAISE 2025 is an intensive three-day summer school focused on cutting-edge robotics and artificial intelligence technologies in systems engineering. The program combines theoretical knowledge with hands-on workshops and a competitive challenge.</p>
+
+                    <div class="row g-4 mt-3">
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="icon-circle bg-primary bg-opacity-10 mx-auto mb-3">
+                                        <i class="fas fa-robot text-primary"></i>
+                                    </div>
+                                    <h4>ROS</h4>
+                                    <p class="card-text">Practical workshops on Robot Operating System and hands-on implementation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="icon-circle bg-purple bg-opacity-10 mx-auto mb-3">
+                                        <i class="fas fa-brain text-purple"></i>
+                                    </div>
+                                    <h4>AI Technologies</h4>
+                                    <p class="card-text">Deep dive into Generative AI, Computer Vision, and Large Language Models.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="icon-circle bg-success bg-opacity-10 mx-auto mb-3">
+                                        <i class="fas fa-trophy text-success"></i>
+                                    </div>
+                                    <h4>Competition</h4>
+                                    <p class="card-text">Put your skills to the test in the RAISE robotics competition with attractive prizes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience Section -->
+    <section class="py-5 bg-light" id="audience">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4">Who Should Attend</h2>
+
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="icon-circle bg-info bg-opacity-10 mx-auto mb-3">
+                                        <i class="fas fa-user-graduate text-info"></i>
+                                    </div>
+                                    <h4>Students</h4>
+                                    <p>Undergraduate and graduate students interested in robotics and AI technologies.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="icon-circle bg-success bg-opacity-10 mx-auto mb-3">
+                                        <i class="fas fa-microscope text-success"></i>
+                                    </div>
+                                    <h4>PhD Candidates</h4>
+                                    <p>Doctoral researchers working on robotics, AI, and systems engineering.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="icon-circle bg-primary bg-opacity-10 mx-auto mb-3">
+                                        <i class="fas fa-chalkboard-teacher text-primary"></i>
+                                    </div>
+                                    <h4>Academics</h4>
+                                    <p>Professors and researchers interested in the latest advances in the field.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="icon-circle bg-warning bg-opacity-10 mx-auto mb-3">
+                                        <i class="fas fa-industry text-warning"></i>
+                                    </div>
+                                    <h4>Industry</h4>
+                                    <p>Professionals seeking to understand and implement robotics and AI solutions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-5" id="pricing">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4">Registration Fees</h2>
+
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card price-card h-100">
+                                <div class="price-header bg-light">
+                                    <h3>Students</h3>
+                                </div>
+                                <div class="price-body">
+                                    <div class="price-amount text-primary">300 DT</div>
+                                    <p class="text-muted mb-4">Full access to all sessions and workshops</p>
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> All workshops</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Competition participation</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Lunch and refreshments</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Certificate of participation</li>
+                                    </ul>
+                                    <a href="#register" class="btn btn-outline-primary w-100" style="color: var(--secondary-color); border-color: var(--secondary-color);">Register Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card price-card h-100">
+                                <div class="price-header bg-light">
+                                    <h3>Academics</h3>
+                                </div>
+                                <div class="price-body">
+                                    <div class="price-amount text-primary">400 DT</div>
+                                    <p class="text-muted mb-4">Full access to all sessions and workshops</p>
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> All workshops</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Competition participation</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Lunch and refreshments</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Certificate of participation</li>
+                                    </ul>
+                                    <a href="#register" class="btn btn-outline-primary w-100" style="color: var(--secondary-color); border-color: var(--secondary-color);">Register Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card price-card h-100">
+                                <div class="price-header bg-light">
+                                    <h3>Industry</h3>
+                                </div>
+                                <div class="price-body">
+                                    <div class="price-amount text-primary">500 DT</div>
+                                    <p class="text-muted mb-4">Full access to all sessions and workshops</p>
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> All workshops</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Competition participation</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Lunch and refreshments</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Certificate of participation</li>
+                                    </ul>
+                                    <a href="#register" class="btn btn-outline-primary w-100" style="color: var(--secondary-color); border-color: var(--secondary-color);">Register Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info mt-5">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-tag me-3 fa-2x"></i>
+                            <div>
+                                <h5 class="mb-1">Early Offer!</h5>
+                                <p class="mb-0">Special price: <strong>100 DT</strong> for 1st cycle students (cash payment before July 15, 2025)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section class="py-5 bg-light" id="program">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4">Program Schedule</h2>
+
+                    <div class="day-schedule">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="badge-custom me-3">Day 1</div>
+                            <h3 class="mb-0">ROS (Robot Operating System)</h3>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">09:00 – 09:30</div>
+                            <h5>Opening Session</h5>
+                            <p class="mb-0">Welcome remarks and introduction to the summer school</p>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">09:30 – 12:30</div>
+                            <h5>Introduction to ROS</h5>
+                            <p class="mb-0">Fundamentals of Robot Operating System and its architecture</p>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">13:30 – 17:00</div>
+                            <h5>Hands-on Workshops</h5>
+                            <p class="mb-0">Practical implementation of ROS concepts with real robots</p>
+                        </div>
+                    </div>
+
+                    <div class="day-schedule">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="badge-custom me-3">Day 2</div>
+                            <h3 class="mb-0">Artificial Intelligence</h3>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">09:00 – 09:30</div>
+                            <h5>Day 2 Opening</h5>
+                            <p class="mb-0">Overview of the AI topics for the day</p>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">09:30 – 12:00</div>
+                            <h5>Generative AI</h5>
+                            <p class="mb-0">Introduction to generative models and their applications in robotics</p>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">13:00 – 15:00</div>
+                            <h5>Computer Vision</h5>
+                            <p class="mb-0">Image processing and visual perception for robotics systems</p>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">15:15 – 17:00</div>
+                            <h5>Large Language Models (LLMs)</h5>
+                            <p class="mb-0">Applications of LLMs in robotics control and interaction</p>
+                        </div>
+                    </div>
+
+                    <div class="day-schedule">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="badge-custom me-3">Day 3</div>
+                            <h3 class="mb-0">Competition & Industry Day</h3>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">09:00 – 09:30</div>
+                            <h5>Final Day Opening</h5>
+                            <p class="mb-0">Introduction to the competition and day's activities</p>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">09:30 – 12:30</div>
+                            <h5>RAISE Competition</h5>
+                            <p class="mb-0">Teams compete in different robotics tracks</p>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">13:30 – 15:30</div>
+                            <h5>Industrial & Poster Sessions</h5>
+                            <p class="mb-0">Presentations from industry partners and poster exhibitions</p>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-time">15:45 – 17:30</div>
+                            <h5>Awards Ceremony & Closing</h5>
+                            <p class="mb-0">Announcement of competition winners and closing remarks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competition Section -->
+    <section class="py-5" id="competition">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4">RAISE Competition</h2>
+                    <p class="lead mb-5">The RAISE 2025 competition aims to foster innovation and practical skills in robotics and AI. Teams will compete in three different tracks with attractive prizes for winners.</p>
+
+                    <div class="track-card">
+                        <h4><i class="fas fa-robot text-primary me-2"></i> Track 1: Autonomous Robot</h4>
+                        <p>Design a robot that can follow a 10-meter black path (5 cm wide) autonomously with maximum speed and precision.</p>
+                    </div>
+
+                    <div class="track-card">
+                        <h4><i class="fas fa-box text-warning me-2"></i> Track 2: Industrial Robot</h4>
+                        <p>Build a robot capable of carrying a 5cm³ box and following a black path for 10 meters without dropping the payload.</p>
+                    </div>
+
+                    <div class="track-card">
+                        <h4><i class="fas fa-leaf text-success me-2"></i> Track 3: Agriculture Robot</h4>
+                        <p>Develop a robot that can read QR codes with a camera and perform specified actions (FORWARD, BACKWARD, etc.) along a 10-meter path.</p>
+                    </div>
+
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="fas fa-award text-warning me-2"></i> Rewards</h4>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Monetary prizes for each track winner</li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Potential industrial partnerships for real-world implementation</li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Recognition certificates for all finalists</li>
+                            </ul>
+
+                            <div class="alert alert-warning">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-exclamation-circle me-3 fa-2x"></i>
+                                    <div>
+                                        <h5 class="mb-1">Important Notice</h5>
+                                        <p class="mb-0">Register before May 31, 2025 to participate in the competition. Limited spots available.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="#register" class="btn mt-3" style="background-color: var(--primary-color); color: white;">
+                                <i class="fas fa-trophy me-2"></i> Competition Registration Form
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="py-5" id="sponsors">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4">Our Sponsors</h2>
+
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10">
+                                    <h4 class="text-center mb-4">Platinum Sponsors</h4>
+                                    <div class="row g-4 justify-content-center align-items-center">
+                                        <div class="col-md-6">
+                                            <div class="sponsor-logo text-center p-4">
+                                                <img src="assets/images/sponsors/scalexi/scalexi-logo-transparent-small.png" alt="SCALEXI" class="img-fluid" style="max-height: 100px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="sponsor-logo text-center p-4">
+                                                <img src="assets/images/sponsors/must/must.png" alt="MUST" class="img-fluid" style="max-height: 100px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-5">
+                                <h5 class="text-muted mb-3">Interested in becoming a sponsor?</h5>
+                                <a href="#contact" class="btn btn-outline-primary" style="color: var(--secondary-color); border-color: var(--secondary-color);">
+                                    <i class="fas fa-handshake me-2"></i> Contact Us for Sponsorship Opportunities
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-5 bg-light" id="partners">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4">Our Partners</h2>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row g-4 align-items-center justify-content-center">
+                                <div class="col-6 col-md-4 col-lg-2 text-center">
+                                    <div class="partner-logo">CES Lab</div>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-2 text-center">
+                                    <div class="partner-logo">LASEM</div>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-2 text-center">
+                                    <div class="partner-logo">SMART</div>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-2 text-center">
+                                    <div class="partner-logo">Centre de Recherche</div>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-2 text-center">
+                                    <div class="partner-logo">REGIM Lab</div>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-2 text-center">
+                                    <div class="partner-logo">University of Sfax</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organization Section -->
+    <section class="py-5" id="organization">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4">Organization</h2>
+
+                    <div class="row g-4">
+                        <!-- General Chair -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4" style="color: var(--primary-color);">General Chair</h4>
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3">
+                                            <div class="avatar-placeholder" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; width: 60px; height: 60px; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; border-radius: 50%;">OC</div>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-1">Omar Cheikhrouhou</h5>
+                                            <p class="mb-0 text-muted">ENET'Com, Sfax, Tunisia</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Program Lead -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4" style="color: var(--primary-color);">Technical Program Lead</h4>
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3">
+                                            <div class="avatar-placeholder" style="background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)); color: white; width: 60px; height: 60px; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; border-radius: 50%;">AK</div>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-1">Anis Koubaa</h5>
+                                            <p class="mb-0 text-muted">Alfaisal University/ScaleX Innovation</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scientific Committee -->
+                    <div class="card mt-4 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4" style="color: var(--primary-color);">Scientific Committee</h4>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="committee-member d-flex align-items-center p-3 bg-light rounded-3 mb-3" style="border-left: 4px solid var(--secondary-color);">
+                                        <div class="avatar-placeholder me-3" style="background-color: var(--secondary-color); color: white; width: 50px; height: 50px; font-size: 1rem; display: flex; align-items: center; justify-content: center; border-radius: 50%;">HB</div>
+                                        <div>
+                                            <h5 class="mb-0 fs-5">Hatem Bentaher</h5>
+                                            <p class="mb-0 text-muted">ISGIS, University of Sfax</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="committee-member d-flex align-items-center p-3 bg-light rounded-3 mb-3" style="border-left: 4px solid var(--secondary-color);">
+                                        <div class="avatar-placeholder me-3" style="background-color: var(--secondary-color); color: white; width: 50px; height: 50px; font-size: 1rem; display: flex; align-items: center; justify-content: center; border-radius: 50%;">HC</div>
+                                        <div>
+                                            <h5 class="mb-0 fs-5">Houssam Chouikhi</h5>
+                                            <p class="mb-0 text-muted">ISSIG, University of Gabès</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="committee-member d-flex align-items-center p-3 bg-light rounded-3 mb-3" style="border-left: 4px solid var(--secondary-color);">
+                                        <div class="avatar-placeholder me-3" style="background-color: var(--secondary-color); color: white; width: 50px; height: 50px; font-size: 1rem; display: flex; align-items: center; justify-content: center; border-radius: 50%;">NA</div>
+                                        <div>
+                                            <h5 class="mb-0 fs-5">Nidhal Ayadi</h5>
+                                            <p class="mb-0 text-muted">University of Sfax</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="committee-member d-flex align-items-center p-3 bg-light rounded-3 mb-3" style="border-left: 4px solid var(--secondary-color);">
+                                        <div class="avatar-placeholder me-3" style="background-color: var(--secondary-color); color: white; width: 50px; height: 50px; font-size: 1rem; display: flex; align-items: center; justify-content: center; border-radius: 50%;">MB</div>
+                                        <div>
+                                            <h5 class="mb-0 fs-5">Mohamed Bahloul</h5>
+                                            <p class="mb-0 text-muted">Alfaisal University</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="committee-member d-flex align-items-center p-3 bg-light rounded-3 mb-3" style="border-left: 4px solid var(--secondary-color);">
+                                        <div class="avatar-placeholder me-3" style="background-color: var(--secondary-color); color: white; width: 50px; height: 50px; font-size: 1rem; display: flex; align-items: center; justify-content: center; border-radius: 50%;">YB</div>
+                                        <div>
+                                            <h5 class="mb-0 fs-5">Yassine Bouteraa</h5>
+                                            <p class="mb-0 text-muted">Prince Sattam Bin Abdulaziz University</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="py-5 bg-light" id="register">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="section-title text-center mb-4">Registration Form</h2>
+
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="affiliation" class="form-label">Affiliation</label>
+                                        <input type="text" class="form-control" id="affiliation" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="position" class="form-label">Position</label>
+                                        <select class="form-select" id="position" required>
+                                            <option value="" selected disabled>Select your position</option>
+                                            <option value="student">Student</option>
+                                            <option value="phd">PhD Candidate</option>
+                                            <option value="academic">Academic</option>
+                                            <option value="industry">Industry Professional</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="participationType" class="form-label">Participation Type</label>
+                                        <select class="form-select" id="participationType" required>
+                                            <option value="" selected disabled>Select participation type</option>
+                                            <option value="attendee">Attendee Only</option>
+                                            <option value="competition">Attendee + Competition</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="termsAgreement" required>
+                                            <label class="form-check-label" for="termsAgreement">
+                                                I agree to the terms and conditions
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center mt-4">
+                                        <button type="submit" class="btn btn-lg px-5" style="background-color: var(--primary-color); color: white;">
+                                            <i class="fas fa-paper-plane me-2"></i> Submit Registration
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4">Contact Us</h2>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4"><i class="fas fa-envelope-open-text text-primary me-2"></i> General Inquiries</h4>
+                                    <p class="mb-3">For questions regarding registration, accommodations, or general information:</p>
+                                    <ul class="list-unstyled contact-list">
+                                        <li class="contact-item">
+                                            <i class="fas fa-envelope text-primary me-2"></i>
+                                            <a href="mailto:raise2025@enetcom.usf.tn">raise2025@enetcom.usf.tn</a>
+                                        </li>
+                                        <li class="contact-item">
+                                            <i class="fas fa-phone text-primary me-2"></i>
+                                            <a href="tel:+21672347854">+216 xx xxx xxx</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4"><i class="fas fa-handshake text-success me-2"></i> Sponsorship Opportunities</h4>
+                                    <p class="mb-3">Interested in supporting the RAISE 2025 event and gaining visibility for your organization?</p>
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Brand visibility among robotics and AI experts</li>
+                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Access to talented participants and researchers</li>
+                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Product demonstration opportunities</li>
+                                    </ul>
+                                    <a href="mailto:sponsors.raise2025@enetcom.usf.tn" class="btn" style="background-color: var(--secondary-color); color: white;">
+                                        <i class="fas fa-envelope me-2"></i> Contact Sponsorship Team
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-white">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6 text-center text-md-start">
+                    <h4 class="mb-3">RAISE 2025</h4>
+                    <p>Robotics and Artificial Intelligence in Systems Engineering</p>
+                    <p class="mb-0">July 14-16, 2025 | Centre de recherche Sfax, Tunisia</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <h4 class="mb-3">Contact</h4>
+                    <p><i class="fas fa-envelope me-2"></i> raise2025@enetcom.usf.tn</p>
+                    <p class="mb-0"><i class="fas fa-phone me-2"></i> +216 xx xxx xxx</p>
+                </div>
+                <div class="col-12 text-center mt-4">
+                    <p class="mb-0">&copy; 2024 RAISE Summer School. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Button -->
+    <div class="chatbot-button" id="chatbotButton">
+        <div class="chatbot-icon">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="chatbot-text">Ask RAISE Bot</div>
+    </div>
+
+    <!-- Floating Tooltips -->
+    <div class="chatbot-tooltip">
+        <div class="tooltip-inner">
+            <strong>RAISE Bot</strong>
+            <p>Ask me anything about the event, registration, program, and more!</p>
+        </div>
+        <div class="tooltip-arrow"></div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all sections
+            const sections = document.querySelectorAll('section[id]');
+
+            // Get the navbar
+            const navBar = document.querySelector('.bg-light.py-2');
+            const navBarHeight = navBar.offsetHeight;
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Make navbar sticky on scroll
+            let navbarOriginalTop = navBar.offsetTop;
+
+            function stickyNavbar() {
+                if (window.scrollY >= navbarOriginalTop) {
+                    document.body.style.paddingTop = navBarHeight + 'px';
+                    navBar.classList.add('fixed-top');
+                } else {
+                    document.body.style.paddingTop = '0';
+                    navBar.classList.remove('fixed-top');
+                }
+            }
+
+            // Highlight active section in navbar
+            function highlightNavigation() {
+                let scrollY = window.scrollY;
+
+                // Iterate through sections to find the one in view
+                sections.forEach(current => {
+                    const sectionTop = current.offsetTop - navBarHeight - 10;
+                    const sectionHeight = current.offsetHeight;
+                    const sectionId = current.getAttribute('id');
+
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        // Remove active class from all links
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                        });
+
+                        // Add active class to current section link
+                        const activeLink = document.querySelector(`.nav-link[href*="#${sectionId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }
+
+            // Add event listeners
+            window.addEventListener('scroll', stickyNavbar);
+            window.addEventListener('scroll', highlightNavigation);
+
+            // Initial call to set initial state
+            stickyNavbar();
+            highlightNavigation();
+
+            // Smooth scrolling for nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+
+                    window.scrollTo({
+                        top: targetSection.offsetTop - navBarHeight,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Chatbot Button Functionality
+            const chatbotButton = document.getElementById('chatbotButton');
+            const chatbotTooltip = document.querySelector('.chatbot-tooltip');
+
+            // Show tooltip on page load after 3 seconds
+            setTimeout(() => {
+                chatbotTooltip.style.opacity = '1';
+                chatbotTooltip.style.transform = 'translateY(0)';
+
+                // Hide tooltip after 5 seconds
+                setTimeout(() => {
+                    chatbotTooltip.style.opacity = '0';
+                    chatbotTooltip.style.transform = 'translateY(20px)';
+                }, 5000);
+            }, 3000);
+
+            // Always use embedded chatbot
+            loadEmbeddedChatbot();
+
+            // Open chatbot when button is clicked
+            chatbotButton.addEventListener('click', function() {
+                // The embedded-widget.js will handle this button click
+            });
+
+            // Function to load the embedded chatbot widget
+            function loadEmbeddedChatbot() {
+                // Check if script is already loaded
+                if (!document.querySelector('script[src="chatbot/embedded-widget.js"]')) {
+                    const script = document.createElement('script');
+                    script.src = 'chatbot/embedded-widget.js';
+                    document.body.appendChild(script);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
