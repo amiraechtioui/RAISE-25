@@ -1,0 +1,2 @@
+[02-May-2025 13:20:40 Europe/Berlin] Database connection error: SQLSTATE[HY000] [2002] Connection refused
+[02-May-2025 13:23:37 Europe/Berlin] Database connection error: SQLSTATE[HY000] [1049] Unknown database 'raise2025_db'
