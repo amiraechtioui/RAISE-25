@@ -1,0 +1,506 @@
+<?php
+// Get language from URL or set default to English
+$lang = isset($_GET['lang']) ? $_GET['lang'] : 'en';
+$isRTL = ($lang === 'ar');
+$dir = $isRTL ? 'rtl' : 'ltr';
+
+// Translation array
+$translations = [
+    'en' => [
+        'title' => 'RAISE 2025 Chatbot',
+        'heading' => 'RAISE 2025 Assistant',
+        'placeholder' => 'Ask me anything about RAISE 2025...',
+        'button' => 'Send',
+        'welcome' => '<h5>👋 Welcome to RAISE 2025 Assistant!</h5><p>I can help you with information about the RAISE 2025 summer school on Robotics and AI in Systems Engineering. Feel free to ask me about:</p><ul><li>Event details and dates</li><li>Registration fees</li><li>Program agenda</li><li>Competition tracks</li><li>Organizers and sponsors</li></ul><p>How can I assist you today?</p>'
+    ],
+    'fr' => [
+        'title' => 'RAISE 2025 Chatbot',
+        'heading' => 'Assistant RAISE 2025',
+        'placeholder' => 'Posez-moi des questions sur RAISE 2025...',
+        'button' => 'Envoyer',
+        'welcome' => '<h5>👋 Bienvenue sur l\'Assistant RAISE 2025!</h5><p>Je peux vous aider avec des informations sur l\'école d\'été RAISE 2025 sur la Robotique et l\'IA en Ingénierie des Systèmes. N\'hésitez pas à me poser des questions sur:</p><ul><li>Détails et dates de l\'événement</li><li>Frais d\'inscription</li><li>Programme</li><li>Pistes de compétition</li><li>Organisateurs et sponsors</li></ul><p>Comment puis-je vous aider aujourd\'hui?</p>'
+    ],
+    'ar' => [
+        'title' => 'RAISE 2025 محادث',
+        'heading' => 'RAISE 2025 مساعد',
+        'placeholder' => '...RAISE 2025 اسألني أي شيء عن',
+        'button' => 'إرسال',
+        'welcome' => '<h5 dir="rtl">👋 مرحبا بك في مساعد RAISE 2025!</h5><p dir="rtl">يمكنني مساعدتك بمعلومات حول المدرسة الصيفية RAISE 2025 للروبوتات والذكاء الاصطناعي في هندسة النظم. لا تتردد في سؤالي عن:</p><ul dir="rtl"><li>تفاصيل وتواريخ الحدث</li><li>رسوم التسجيل</li><li>جدول البرنامج</li><li>مسارات المسابقة</li><li>المنظمون والرعاة</li></ul><p dir="rtl">كيف يمكنني مساعدتك اليوم؟</p>'
+    ]
+];
+
+// Set default language if not supported
+if (!array_key_exists($lang, $translations)) {
+    $lang = 'en';
+    $isRTL = false;
+    $dir = 'ltr';
+}
+
+// Get translations for the selected language
+$t = $translations[$lang];
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $lang; ?>" dir="<?php echo $dir; ?>">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $t['title']; ?></title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a2540;
+            --secondary-color: #635bff;
+            --accent-color: #00d4ff;
+            --text-color: #424770;
+            --light-bg: #f6f9fc;
+            --light-accent: #e3e8ee;
+            --success-color: #32D583;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chat-header {
+            text-align: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .chat-box {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: var(--secondary-color);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+
+        .bot-message {
+            background-color: var(--light-bg);
+            border-bottom-left-radius: 0;
+        }
+
+        .bot-message a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .bot-message a:hover {
+            text-decoration: underline;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        #message-input {
+            flex-grow: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--light-accent);
+            border-radius: 2rem;
+            font-size: 1rem;
+        }
+
+        #send-button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #send-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 0.5rem 1rem;
+            background-color: var(--light-bg);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            width: fit-content;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.6;
+            }
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+        }
+
+        .language-selector button {
+            margin-left: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-selector button:hover,
+        .language-selector button.active {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .message {
+                max-width: 90%;
+            }
+        }
+
+        /* RTL specific styles */
+        [dir="rtl"] .user-message {
+            margin-left: 0;
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 1rem;
+        }
+
+        [dir="rtl"] .bot-message {
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 1rem;
+        }
+
+        [dir="rtl"] .language-selector {
+            left: 1rem;
+            right: auto;
+        }
+
+        /* Markdown styles */
+        .bot-message h1,
+        .bot-message h2,
+        .bot-message h3,
+        .bot-message h4,
+        .bot-message h5,
+        .bot-message h6 {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .bot-message ul,
+        .bot-message ol {
+            padding-left: 1.5rem;
+        }
+
+        [dir="rtl"] .bot-message ul,
+        [dir="rtl"] .bot-message ol {
+            padding-right: 1.5rem;
+            padding-left: 0;
+        }
+
+        .bot-message p {
+            margin-bottom: 1rem;
+        }
+
+        .bot-message code {
+            padding: 0.2rem 0.4rem;
+            background-color: var(--light-accent);
+            border-radius: 0.25rem;
+        }
+
+        .bot-message pre {
+            padding: 1rem;
+            background-color: var(--light-accent);
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .bot-message blockquote {
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 1rem;
+            margin-left: 0;
+            color: #666;
+        }
+
+        [dir="rtl"] .bot-message blockquote {
+            border-right: 4px solid var(--secondary-color);
+            border-left: none;
+            padding-right: 1rem;
+            padding-left: 0;
+            margin-right: 0;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100;
+            padding: 0.25rem 0.5rem;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        [dir="rtl"] .back-button {
+            right: 1rem;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-header position-relative">
+            <a href="../" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                <?php echo $isRTL ? 'عودة' : 'Back'; ?>
+            </a>
+
+            <div class="language-selector">
+                <button <?php echo $lang === 'en' ? 'class="active"' : ''; ?> onclick="changeLanguage('en')">EN</button>
+                <button <?php echo $lang === 'fr' ? 'class="active"' : ''; ?> onclick="changeLanguage('fr')">FR</button>
+                <button <?php echo $lang === 'ar' ? 'class="active"' : ''; ?> onclick="changeLanguage('ar')">عربي</button>
+            </div>
+
+            <h1><?php echo $t['heading']; ?></h1>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <div class="message bot-message" id="welcome-message">
+                <?php echo $t['welcome']; ?>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <i class="fas fa-circle"></i>
+                <i class="fas fa-circle"></i>
+                <i class="fas fa-circle"></i>
+            </div>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="message-input" placeholder="<?php echo $t['placeholder']; ?>" autocomplete="off">
+            <button id="send-button">
+                <?php echo $t['button']; ?>
+                <i class="fas fa-paper-plane ms-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Markdown Parser - Marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        // DOM Elements
+        const chatBox = document.getElementById('chatBox');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Current chat language
+        let currentLang = '<?php echo $lang; ?>';
+        let isRTL = <?php echo $isRTL ? 'true' : 'false'; ?>;
+
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Function to change the language
+        function changeLanguage(lang) {
+            window.location.href = `?lang=${lang}`;
+        }
+
+        // Send message function
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            addMessage(message, 'user-message');
+            messageInput.value = '';
+
+            // Show typing indicator
+            typingIndicator.style.display = 'block';
+
+            // Scroll to bottom of chat
+            scrollToBottom();
+
+            // Send message to AI
+            sendToAI(message);
+        }
+
+        // Add message to chat
+        function addMessage(content, className) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${className}`;
+
+            if (className === 'user-message') {
+                messageDiv.textContent = content;
+            } else {
+                // For bot messages, allow HTML content
+                messageDiv.innerHTML = content;
+            }
+
+            // Insert before typing indicator
+            chatBox.insertBefore(messageDiv, typingIndicator);
+
+            // Scroll to bottom of chat
+            scrollToBottom();
+        }
+
+        // Scroll to bottom function
+        function scrollToBottom() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Send message to AI and process response
+        function sendToAI(message) {
+            // Create EventSource for Server-Sent Events
+            const eventSource = new EventSource(`chatbot.php?message=${encodeURIComponent(message)}&lang=${currentLang}`);
+
+            let fullResponse = '';
+            let responseDiv = null;
+
+            // Listen for messages
+            eventSource.addEventListener('message', function(e) {
+                const data = JSON.parse(e.data);
+
+                if (data.error) {
+                    // Hide typing indicator
+                    typingIndicator.style.display = 'none';
+
+                    // Show error message
+                    addMessage(`Error: ${data.error}`, 'bot-message');
+
+                    // Close connection
+                    eventSource.close();
+                    return;
+                }
+
+                if (data.choices && data.choices[0].delta && data.choices[0].delta.content) {
+                    const content = data.choices[0].delta.content;
+
+                    // If this is the first chunk, create a new message div
+                    if (!responseDiv) {
+                        // Hide typing indicator
+                        typingIndicator.style.display = 'none';
+
+                        responseDiv = document.createElement('div');
+                        responseDiv.className = 'message bot-message';
+                        chatBox.insertBefore(responseDiv, typingIndicator);
+                    }
+
+                    // Append to full response
+                    fullResponse += content;
+
+                    // Update the message content
+                    responseDiv.innerHTML = fullResponse;
+
+                    // Scroll to the bottom
+                    scrollToBottom();
+                }
+            });
+
+            // Handle completion
+            eventSource.addEventListener('done', function(e) {
+                eventSource.close();
+
+                // Hide typing indicator if it's still showing
+                typingIndicator.style.display = 'none';
+
+                // If no response was received, show an error
+                if (!responseDiv) {
+                    addMessage('Sorry, I couldn\'t generate a response at this time.', 'bot-message');
+                }
+            });
+
+            // Handle errors
+            eventSource.onerror = function(e) {
+                console.error('EventSource error:', e);
+                eventSource.close();
+
+                // Hide typing indicator
+                typingIndicator.style.display = 'none';
+
+                // Show error message if no response was started
+                if (!responseDiv) {
+                    addMessage('Sorry, there was an error connecting to the AI service.', 'bot-message');
+                }
+            };
+        }
+    </script>
+</body>
+
+</html>
